@@ -2,7 +2,14 @@ const chalk = require('chalk')
 const getNotes = require('./nodes')
 const log = console.log
 
-const msg = getNotes()
-log(msg)
+const command = process.argv[2]
 
-log(chalk.green(msg))
+log(process.argv)
+
+if (command === 'add') {
+  log('Adding note!')
+}
+
+if (command === 'remove') {
+  log('Removing note!')
+}
