@@ -1,4 +1,3 @@
-const chalk = require('chalk')
 const yargs = require('yargs')
 const notes = require('./nodes')
 const log = console.log
@@ -33,8 +32,13 @@ yargs.command({
 yargs.command({
   command: 'remove',
   describe: 'Remove a note',
-  handler: () => {
-    log('Removing a note!')
+  title: {
+    describe: 'Note Title',
+    demandOption: true,
+    type: 'string',
+  },
+  handler: ({ title }) => {
+    notes.removeNote(title)
   },
 })
 
