@@ -1,2 +1,0 @@
-My name is Andres Gutierrez
-And I'm a NodeJS Developer
