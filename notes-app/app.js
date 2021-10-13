@@ -1,6 +1,5 @@
 const yargs = require('yargs')
 const notes = require('./nodes')
-const log = console.log
 
 // Customize yargs version
 yargs.version('1.1.0')
@@ -56,7 +55,7 @@ yargs.command({
   command: 'list',
   describe: 'List your notes',
   handler() {
-    log('Listing out all notes!')
+    notes.listNotes()
   },
 })
 
