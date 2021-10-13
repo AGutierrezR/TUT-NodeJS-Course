@@ -31,10 +31,12 @@ yargs.command({
 yargs.command({
   command: 'remove',
   describe: 'Remove a note',
-  title: {
-    describe: 'Note Title',
-    demandOption: true,
-    type: 'string',
+  builder: {
+    title: {
+      describe: 'Note Title',
+      demandOption: true,
+      type: 'string',
+    },
   },
   handler({ title }) {
     notes.removeNote(title)
@@ -45,8 +47,15 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'Read a note',
-  handler() {
-    log('Reading a note!')
+  builder: {
+    title: {
+      describe: 'Note Title',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler({ title }) {
+    notes.readNote(title)
   },
 })
 
