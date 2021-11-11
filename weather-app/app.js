@@ -6,4 +6,14 @@ const geoCodeURL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=L
 
 fetch(geoCodeURL)
   .then((res) => res.json())
+  .then((res) => {
+    if (res.error) {
+      throw res.error
+    }
+
+    return res
+  })
   .then((body) => console.log(body))
+  .catch((err) => {
+    console.log(err.message)
+  })
