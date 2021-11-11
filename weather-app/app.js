@@ -1,11 +1,9 @@
-console.log('Starting')
+const fetch = require('node-fetch')
+require('dotenv').config()
 
-setTimeout(() => {
-  console.log('2 Second Timer')
-}, 2000)
+const API_KEY = process.env.API_KEY
+const geoCodeURL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=London&aqi=no`
 
-setTimeout(() => {
-  console.log('0 Second Timer')
-}, 0)
-
-console.log('Stopping')
+fetch(geoCodeURL)
+  .then((res) => res.json())
+  .then((body) => console.log(body))
