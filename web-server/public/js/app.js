@@ -1,11 +1,28 @@
 console.log('Client side JS file is loaded')
 
-fetch('http://localhost:3000/weather?address=london').then((response) => {
-  response.json().then((data) => {
-    if (data.error) {
-      return console.error(data.error)
-    }
+const weatherForm = document.querySelector('form')
+const search = document.querySelector('#address')
+const result = document.querySelector('#result')
 
-    console.log(data)
+weatherForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  result.innerHTML = ''
+
+  const address = search.value
+  fetch(`http://localhost:3000/weather?address=${address}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        const para = document.createElement('p')
+        para.className = 'error'
+        para.textContent = data.error
+        return result.appendChild(para)
+      }
+
+      for (const item in data) {
+        const para = document.createElement('p')
+        para.textContent = data[item]
+        result.appendChild(para)
+      }
+    })
   })
 })

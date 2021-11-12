@@ -18,8 +18,8 @@ const geoCode = async (address) => {
     })
     .then(({ current, location, forecast }) => {
       return {
-        forecast: forecastInfo({ current, forecast }),
         address: location.name,
+        forecast: forecastInfo({ current, forecast }),
         region: location.region,
         country: location.country,
       }
