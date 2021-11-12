@@ -1,9 +1,12 @@
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient // For connection use
+const { MongoClient, ObjectId } = require('mongodb')
 
 // Server configuration
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
+
+const id = new ObjectId()
+console.log(id.toString())
+console.log(id.getTimestamp())
 
 // Making the connection
 MongoClient.connect(
@@ -47,27 +50,27 @@ MongoClient.connect(
     //   })
 
     // Inserting multiple documents
-    db.collection('tasks')
-      .insertMany([
-        {
-          description: 'Description 1',
-          completed: true,
-        },
-        {
-          description: 'Description 2',
-          completed: false,
-        },
-        {
-          description: 'Description 3',
-          completed: true,
-        },
-      ])
-      .then((result, error) => {
-        if (error) {
-          return console.log('Unable to insert tasks')
-        }
+    // db.collection('tasks')
+    //   .insertMany([
+    //     {
+    //       description: 'Description 1',
+    //       completed: true,
+    //     },
+    //     {
+    //       description: 'Description 2',
+    //       completed: false,
+    //     },
+    //     {
+    //       description: 'Description 3',
+    //       completed: true,
+    //     },
+    //   ])
+    //   .then((result, error) => {
+    //     if (error) {
+    //       return console.log('Unable to insert tasks')
+    //     }
 
-        console.log(result)
-      })
+    //     console.log(result)
+    //   })
   }
 )
