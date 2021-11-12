@@ -17,10 +17,57 @@ MongoClient.connect(
     // Selecting database
     const db = client.db(databaseName)
 
-    // Inserting data
-    db.collection('users').insertOne({
-      name: 'Andres',
-      age: 32,
-    })
+    // // Inserting data
+    // db.collection('users').insertOne(
+    //   {
+    //     name: 'Andres',
+    //     age: 32,
+    //   },
+    //   (error, result) => {
+    //     if (error) {
+    //       return console.log('Unable to insert user')
+    //     }
+
+    //     console.log(result)
+    //   }
+    // )
+
+    // // Promise Way
+    // db.collection('users')
+    //   .insertOne({
+    //     name: 'Andres',
+    //     age: 32,
+    //   })
+    //   .then((result, error) => {
+    //     if (error) {
+    //       return console.log('Unable to insert user')
+    //     }
+
+    //     console.log(result)
+    //   })
+
+    // Inserting multiple documents
+    db.collection('tasks')
+      .insertMany([
+        {
+          description: 'Description 1',
+          completed: true,
+        },
+        {
+          description: 'Description 2',
+          completed: false,
+        },
+        {
+          description: 'Description 3',
+          completed: true,
+        },
+      ])
+      .then((result, error) => {
+        if (error) {
+          return console.log('Unable to insert tasks')
+        }
+
+        console.log(result)
+      })
   }
 )
