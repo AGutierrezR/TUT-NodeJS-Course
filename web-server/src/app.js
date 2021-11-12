@@ -49,7 +49,7 @@ app.get('/weather', (req, res) => {
 
   geoCode(req.query.address)
     .then((body) => res.send(body))
-    .catch((err) => res.send(err))
+    .catch((err) => res.send({ error: err.message, code: err.code }))
 })
 
 app.get('/products', (req, res) => {
